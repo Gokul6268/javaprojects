@@ -2,6 +2,7 @@ package com.amazon.profile.request;
 
 public class ProfileRequest {
 
+
 	private String email;
 	private String mobile;
 

@@ -25,4 +25,18 @@ public class ProfileRepository {
 		return response;
 
 	}
+
+	public ProfileEntity getProfileByEmail(String _email) {
+
+		System.out.println("ProfileRepository.getProfileByEmail():::::::::::: START");
+		Session session = sessionFactory.openSession();
+
+		ProfileEntity response = session.createQuery("from ProfileEntity where email=:email", ProfileEntity.class)
+				.setParameter("email", _email).uniqueResult();
+
+		System.out.println("ProfileRepository.getProfileByEmail()::::::::::::::::::::: END");
+
+		return response;
+
+	}
 }

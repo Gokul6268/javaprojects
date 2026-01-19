@@ -1,13 +1,15 @@
 package com.amazon.profile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import com.amazon.profile.controller.ProfileController;
+import com.amazon.profile.controller.exception.ProfileAlreadyRegisteredException;
 import com.amazon.profile.entity.ProfileEntity;
 import com.amazon.profile.repository.ProfileRepository;
 import com.amazon.profile.request.ProfileRequest;
 
-@Service
+@Repository
 public class ProfileService {
 
 	private final ProfileController profileController;
@@ -26,8 +28,15 @@ public class ProfileService {
 
 		profileEntity.setEmail(profileRequest.getEmail());
 		profileEntity.setMobile(profileRequest.getMobile());
+		Integer response = null;
 
-		Integer response = profileRepository.saveProfile(profileEntity);
+		ProfileEntity profileEntityForEmail = profileRepository.getProfileByEmail(profileRequest.getEmail());
+
+	if (profileEntityForEmail == null) {
+			response = profileRepository.saveProfile(profileEntity);
+		} else {
+			throw new ProfileAlreadyRegisteredException("PEC-001");
+		}
 		System.out.println("ProfileService.createProfile()::: profile created... " + response.intValue());
 		return response;
 	}

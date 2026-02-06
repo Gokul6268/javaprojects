@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +16,7 @@ public class UserEntity {
 	private int userId;
 	private String firstName;
 	private String lastName;
+	@Transient // this will not be stored in database(null/?)
 	private String address;
 
 	public String getFirstName() {

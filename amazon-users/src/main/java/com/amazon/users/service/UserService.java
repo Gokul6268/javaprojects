@@ -11,6 +11,8 @@ import com.amazon.users.controller.UserController;
 import com.amazon.users.repository.UserRepository;
 import com.amazon.users.request.User;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -46,5 +48,13 @@ public class UserService {
 		}
 
 	}
+	
+	@Transactional
+	public void doPayment()
+	{
+		// Deduct the amount --> doDebit();  // successful 
+		// credit the amount --> doCredit(); // Fails
+	}
+	
 
 }

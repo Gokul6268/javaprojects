@@ -1,7 +1,6 @@
 package com.amazon.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,8 @@ public class UserController {
 	@PostMapping("createUser")
 	public String creteUser(@RequestBody User user) {
 		int userId = userService.createUser(user);
-		return "User created and user id is " + userId;
+	    	
+		return "User created and user id is " + userId; // body + status code 
 	}
 
 }

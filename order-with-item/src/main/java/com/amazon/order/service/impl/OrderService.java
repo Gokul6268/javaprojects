@@ -43,7 +43,7 @@ public class OrderService implements IOrderService {
 
 	@Override
 	public int fetchOrder(int orderId) {
-
+		System.out.println("OrderService.fetchOrder() START and order id is " + orderId);
 		List<OrderEntity> orderEntityList = orderRepo.findAll();
 
 		for (OrderEntity oe : orderEntityList) {
@@ -53,7 +53,7 @@ public class OrderService implements IOrderService {
 				System.out.println(oie.getItemName());
 			}
 		}
-
+		System.out.println("OrderService.fetchOrder() END");
 		return 1;
 
 	}
